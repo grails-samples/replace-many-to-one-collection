@@ -1,0 +1,10 @@
+import demo.Book
+
+model {
+    Book book
+}
+
+json {
+    name book.name
+    reviews g.render(template: 'review', collection: book.reviews, var: 'review')
+}

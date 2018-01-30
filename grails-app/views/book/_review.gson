@@ -1,0 +1,10 @@
+import demo.Review
+
+model {
+    Review review
+}
+
+json {
+    author review.author
+    quote review.quote
+}
