@@ -9,4 +9,7 @@ import groovy.transform.CompileStatic
 interface BookDataService {
     Book save(String name)
     Book find(String name)
+
+    @Join('reviews')
+    Book findJoinReviews(String name)
 }

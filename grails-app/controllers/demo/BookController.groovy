@@ -13,7 +13,7 @@ class BookController {
             render status: 422
             return
         }
-        Book book = bookDataService.find(name)
+        Book book = bookDataService.findJoinReviews(name)
         if ( !book ) {
             render status: 404
             return

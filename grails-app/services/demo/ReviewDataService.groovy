@@ -8,4 +8,7 @@ import groovy.transform.CompileStatic
 @Service(Review)
 interface ReviewDataService {
     Review save(String quote, String author, Book book)
+
+    @Where({id in ids})
+    void delete(List<Serializable> ids)
 }

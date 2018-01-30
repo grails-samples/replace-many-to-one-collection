@@ -13,7 +13,7 @@ class UpdateReviewsService {
 
     @Transactional
     Book updateReviews(String name, List<BookReview> reviews ) {
-        Book book = bookDataService.find(name)
+        Book book = bookDataService.findJoinReviews(name)
         if (!book) {
             return null
         }
@@ -28,7 +28,12 @@ class UpdateReviewsService {
     }
 
     void clearReviews(Book book) {
-        book.reviews.clear()
+        List<Serializable> ids = []
+        book.reviews.collect().each { Review review ->
+            book.removeFromReviews(review)
+            ids << review.id
+        }
+        reviewDataService.delete(ids)
     }
 
     void addReviews(Book book, List<BookReview> reviews) {
